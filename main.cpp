@@ -4,20 +4,23 @@ using namespace std;
 struct Auto
 {
     string patente, marca, modelo, color, anio, disponible;
-};
-
+}autos[10];
 struct Personas
 {
     string nombre, apellido, direccion, telefono, correo, dni;
-};
+}clientes[10];
 struct Alquiler
 {
     Auto autoa;
     Personas personasa;
     string fecha;
-};
-
+}al[10];
+int op, np=0, na=0, nalq=0;
+//Menus
 void mostrarMenu();
+void menuAlquiler();
+void menuClientes();
+void menuAutos();
 //Clientes
 void altaClientes(Personas cli[], int& np);
 void bajaClientes(Personas cli[], int& np);
@@ -36,66 +39,36 @@ void modificarAutos(Auto aut[], int& na);
 void altaAlquiler(Alquiler al[], int& nalq, Personas cli[], int& np, Auto aut[], int& na);
 int main(){
     cout<<"\t\tBienvenidos al programa de alquiler de autos"<<endl;
-    //system("pause");
-    //system("cls");
+    system("pause");
+    system("cls");
     mostrarMenu();
     return 0;
 }
 void mostrarMenu(){
-    int op, np=0, na=0, nalq=0;
-    Personas clientes[10];
-    Auto autos[10];
-    Alquiler al[10];
     cargarAutosArchivo(autos, na);
     cargarClientesArchivo(clientes, np);
     do
     {
         cout<<"----------MENU----------"<<endl;
-        cout<<"[1]--->Alta Clientes"<<endl;
-        cout<<"[2]--->Baja Clientes"<<endl;
-        cout<<"[3]--->Modificar Cliente"<<endl;
-        cout<<"[4]--->Listar Clientes"<<endl;
-        cout<<"[5]--->Alta Autos"<<endl;
-        cout<<"[6]--->Baja Autos"<<endl;
-        cout<<"[7]--->Modificar Auto"<<endl;
-        cout<<"[8]--->Listar Autos"<<endl;
-        cout<<"[9]--->Salir"<<endl;
+        cout<<"[1]---> Alquiler"<<endl;
+        cout<<"[2]---> Clientes"<<endl;
+        cout<<"[3]---> Autos"<<endl;
+        cout<<"[4]---> Salir"<<endl;
         cout<<"Ingrese una opcion: ";
         cin>>op;
-        //system("cls");
+        system("cls");
         switch(op)
         {
             case 1:
-                altaClientes(clientes, np);
-                guardarClientesArchivo(clientes, np);
+                menuAlquiler();
                 break;
             case 2:
-                bajaClientes(clientes, np);
-                guardarClientesArchivo(clientes ,np);
+                menuClientes();
                 break;
             case 3:
-                modificarClientes();
-                guardarClientesArchivo(clientes, np);
+                menuAutos();
+                break;
             case 4:
-                listarClientes(clientes, np);
-                break;
-            case 5:
-                altaAutos(autos, na);
-                guardarAutosArchivo(autos, na);
-                break;
-            case 6:
-                bajaAutos(autos ,na);                
-                guardarAutosArchivo(autos, na);
-                break;
-            case 7:
-                modificarAutos();
-                guardarAutosArchivo(autos, na);
-            case 8:
-                listarAutos(autos, na);
-                break;
-            case 9:
-                cout<<"\t\tGracias por usar nuestro software"<<endl;
-                system("pause");
                 break;
             default:
                 cout<<"Opcion ingresada es incorrecta vuelva a ingresar"<<endl;
@@ -103,7 +76,115 @@ void mostrarMenu(){
                 system("cls");
                 break;
         }
-    } while (op!=9);
+    } while (op!=4);
+}
+void menuAlquiler(){
+    do
+    {
+        cout<<"----------MENU Alquiler----------"<<endl;
+        cout<<"[1]---> Alta Alquiler"<<endl;
+        cout<<"[2]---> Baja Alquiler"<<endl;
+        cout<<"[3]---> Listar Alquileres"<<endl;
+        cout<<"[4]---> Volver al Menu Principal"<<endl;
+        cout<<"Ingrese una opcion: ";
+        cin>>op;
+        system("cls");
+        switch (op)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                cout<<"Volviendo al Menu Principal..."<<endl;
+                system("pause");
+                system("cls");
+                mostrarMenu();
+                break;
+            default:
+                cout<<"Opcion ingresada es incorrecta vuelva a ingresar"<<endl;
+                system("pause");
+                system("cls");
+                break;
+        }
+    } while (op!=4);
+}
+void menuClientes(){
+    do
+    {
+        cout<<"----------MENU Clientes----------"<<endl;
+        cout<<"[1]---> Alta Clientes"<<endl;
+        cout<<"[2]---> Baja Clientes"<<endl;
+        cout<<"[3]---> Modificar Clientes"<<endl;
+        cout<<"[4]---> Listar Clientes"<<endl;
+        cout<<"[5]---> Volver al Menu Principal"<<endl;
+        cout<<"Ingrese una opcion: ";
+        cin>>op;
+        system("cls");
+        switch (op)
+        {
+            case 1:
+                altaClientes(clientes,na);
+                guardarClientesArchivo(clientes,na);
+                break;
+            case 2:
+                bajaClientes(clientes,na);
+                guardarClientesArchivo(clientes,na);
+            case 3:
+                break;
+            case 4:
+                listarClientes(clientes, na);
+            case 5:
+                cout<<"Volviendo al Menu Principal..."<<endl;
+                system("pause");
+                system("cls");
+                mostrarMenu();
+                break;
+            default:
+                break;
+        }
+    } while (op!=5);
+}
+void menuAutos(){
+    do
+    {
+        cout<<"----------MENU Autos----------"<<endl;
+        cout<<"[1]---> Alta Autos"<<endl;
+        cout<<"[2]---> Baja Autos"<<endl;
+        cout<<"[3]---> Modificar Autos"<<endl;
+        cout<<"[4]---> Listar Autos"<<endl;
+        cout<<"[5]---> Volver al Menu Principal"<<endl;
+        cout<<"Ingrese una opcion: ";
+        cin>>op;
+        system("cls");
+        switch (op)
+        {
+            case 1:
+                altaAutos(autos,na);
+                guardarAutosArchivo(autos,na);
+                break;
+            case 2:
+                bajaAutos(autos,na);
+                guardarAutosArchivo(autos,na);
+            case 3:
+                break;
+            case 4:
+                listarAutos(autos, na);
+            case 5:
+                cout<<"Volviendo al Menu Principal..."<<endl;
+                system("pause");
+                system("cls");
+                mostrarMenu();
+                break;
+            default:
+                cout<<"Opcion ingresada es incorrecta vuelva a ingresar"<<endl;
+                system("pause");
+                system("cls");
+                break;
+        }
+    } while (op!=5);
 }
 //Funciones Clientes
 void altaClientes(Personas cli[], int& np){
